@@ -231,13 +231,25 @@ public final class DropDown: UIView {
 		}
 		didSet { reloadAllComponents() }
 	}
+    
+    /**
+    The border of DropDown.
+
+    Changing the border automatically reloads the drop down.
+    */
+    @objc public dynamic func setupBorder(color: CGColor, width: CGFloat) {
+        tableViewContainer.layer.borderColor = color
+        tableView.layer.borderColor = color
+        tableViewContainer.layer.borderWidth = width
+        tableView.layer.borderWidth = width
+        reloadAllComponents()
+    }
 
 	/**
 	Alias method for `cornerRadius` variable to avoid ambiguity.
 	*/
 	@objc public dynamic func setupCornerRadius(_ radius: CGFloat) {
-		tableViewContainer.layer.cornerRadius = radius
-		tableView.layer.cornerRadius = radius
+        cornerRadius = radius
 		reloadAllComponents()
 	}
 
