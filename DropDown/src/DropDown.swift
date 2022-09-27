@@ -365,6 +365,15 @@ public final class DropDown: UIView {
 	}
     
     /**
+    The leading offset for each cells of the drop down.
+
+    Changing the cellLeadingOffset automatically reloads the drop down.
+    */
+    @objc public dynamic var cellLeadingOffset: CGFloat = 8 {
+        didSet { reloadAllComponents() }
+    }
+    
+    /**
      The NIB to use for DropDownCells
      
      Changing the cell nib automatically reloads the drop down.
@@ -1090,6 +1099,7 @@ extension DropDown: UITableViewDataSource, UITableViewDelegate {
 		cell.selectedBackgroundColor = selectionBackgroundColor
         cell.highlightTextColor = selectedTextColor
         cell.normalTextColor = textColor
+        cell.leadingOffset.constant = cellLeadingOffset
 		
 		if let cellConfiguration = cellConfiguration {
 			cell.optionLabel.text = cellConfiguration(index, dataSource[index])
